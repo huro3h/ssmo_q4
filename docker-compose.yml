@@ -1,9 +1,28 @@
-version: '3.3'
+version: '3'
+
 services:
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  kali_desktop:
+    image: ccharon/kali-desktop:2021.4
     tty: true
+    privileged: true
+    ports:
+      - 5900:5900
+      - 6080:6080
+    environment:
+      - RESOLUTION=1920x1080x24
+      - USER=${USER}
+      - PASSWORD=kali
+      - ROOT_PASSWORD=root
     volumes:
+      - ${HOME}/kali:${HOME}
       - ./data:/data
+
+#version: '3.3'
+#services:
+#  web:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    tty: true
+#    volumes:
+#      - ./data:/data
